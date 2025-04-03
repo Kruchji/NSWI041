@@ -1,0 +1,22 @@
+@startuml
+left to right direction
+actor "Hitchhiker" as AC_H
+actor "Driver" as AC_D
+rectangle "E-Stop - Establishing Rides" {
+    usecase "Display driver listing" as UC_DDL
+    usecase "Find available ride" as UC_FAR
+    usecase "Set destination" as UC_SD
+    usecase "Set ride destination" as UC_SRD
+    usecase "Ride request notification" as UC_RRN
+    usecase "Rate drivers" as UC_RD
+}
+UC_FAR .l.> UC_DDL : <<include>>
+UC_FAR .l.> UC_SD : <<include>>
+UC_FAR .l.> UC_RRN : <<include>>
+AC_H --> UC_DDL
+AC_H --> UC_FAR
+AC_H --> UC_SD
+AC_D --> UC_SRD
+AC_D --> UC_RRN
+AC_H --> UC_RD
+@enduml
