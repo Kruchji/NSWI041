@@ -6,9 +6,13 @@ rectangle "E-Stop - Managing Rides" {
     usecase "Ride cancellation" as UC_RC
     usecase "Send notification on driver arrival" as UC_SNDA
     usecase "Report hitchhiker behaviour" as UC_RHB
+    usecase "Ride request notification" as UC_RRN
+    usecase "Driver navigation" as UC_DN
 }
+UC_DN .l.> UC_RRN : <<include>>
 AC_H --> UC_RC
 AC_D --> UC_RC
 AC_H --> UC_SNDA
 AC_D --> UC_RHB
+AC_D --> UC_DN
 @enduml

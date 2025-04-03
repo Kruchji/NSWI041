@@ -13,6 +13,7 @@ rectangle "E-Stop - Establishing Rides" {
 UC_FAR .l.> UC_DDL : <<include>>
 UC_FAR .l.> UC_SD : <<include>>
 UC_FAR .l.> UC_RRN : <<include>>
+UC_RD .l.> UC_DDL : <<include>>
 AC_H --> UC_DDL
 AC_H --> UC_FAR
 AC_H --> UC_SD
