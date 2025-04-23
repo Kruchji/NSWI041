@@ -1,0 +1,15 @@
+@startuml uml-state-machine-uc-004
+hide empty description
+state "Displaying map with search box" as Map
+state "Confirm selected destination" as Confirm
+state "Show dialog to complete address" as Incomplete
+state "Display list of similar destinations" as Unknown
+
+[*] -r-> Map
+Map -d-> Confirm : selected valid \n destination
+Confirm -d-> [*] : destination confirmed
+Map -r-> Unknown : selected unknown destination
+Unknown -d-> Confirm : picked a destination \n from the list
+Map -d-> Incomplete : selected \n incomplete destination address
+Incomplete -r-> Confirm : completed the address
+@enduml
