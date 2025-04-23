@@ -1,0 +1,18 @@
+@startuml uml-activity-diagram-uc-004
+start
+:Driver navigates to Set ride destination;
+:System shows a map with a search box;
+:Driver can search for his ride destination (through search box or pin on map);
+switch (Destination address)
+    case ( is incomplete)
+    :System shows shows a prompt to complete the address;
+    :Driver can complete the address;
+    case ( is valid)
+    :Driver confirms their chosen destination;
+    case ( is unknown)
+    :System shows a list of places with similar names;
+    :Driver can pick destination from the list;
+endswitch
+:System confirms this action;
+stop
+@enduml
