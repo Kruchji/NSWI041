@@ -2,8 +2,8 @@
 hide empty description
 state "Displaying map with search box" as Map
 state "Confirm selected destination" as Confirm
-state "Show dialog to complete address" as Incomplete
-state "Display list of similar destinations" as Unknown
+state "Showing dialog to complete address" as Incomplete
+state "Displaying list of similar destinations" as Unknown
 
 [*] -r-> Map
 Map -d-> Confirm : selected valid \n destination
