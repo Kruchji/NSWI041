@@ -1,0 +1,16 @@
+@startuml
+hide empty description
+state "Tracking driver" as Tracking
+state "Location unavailable" as NoLocation
+state "Waiting for notification acknowledgement" as NotifyWait
+state "Waiting for resent notification acknowledgement" as NotifyWaitResent
+
+[*] -r-> Tracking : Location available
+Tracking -r-> NotifyWait : Meeting location reached
+NotifyWait -r-> [*] : Notification acknowledged
+NotifyWait -r-> NotifyWaitResent : Notification not acknowledged
+
+NotifyWaitResent --> [*]
+[*] -d-> NoLocation : Location unavailable
+NoLocation -r-> [*]
+@enduml
