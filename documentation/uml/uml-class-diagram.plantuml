@@ -1,5 +1,4 @@
-@startuml uml-class-diagram
-
+@startuml
 class User {
     given name
     email address
@@ -30,7 +29,7 @@ class "Driver Rating" as DriverRating {
 }
 
 class Route {
-    start: Destination
+    start: current location
     end: Destination
 }
 
@@ -47,14 +46,23 @@ class Preference {
 }
 
 Driver -u-|> User
-Hitchhiker -u-|> User
+Hitchhiker -d-|> User
 
-Driver "1" --> "0..*" DriverRating : received ratings
-Hitchhiker "1" --> "0..*" DriverRating : given ratings
+Driver "1" --> "0..*" DriverRating : receives ratings
+Hitchhiker "1" --> "0..*" DriverRating : gives ratings
 
-Driver "1" -l-> "0..1" Ride : provides
+Driver "1" --> "0..*" RideRequest : receives
+Hitchhiker "1" --> "0..*" RideRequest : issues
+
+Driver "1" -r-> "0..1" Ride : provides
 Hitchhiker "0..*" -r-> "0..1" Ride : uses
 
-Driver "0..1" --> "1" Vehicle : drives
+Driver "0..1" -l-> "1" Vehicle : drives
+Driver "0..*" --> "0..1" Destination : specifies
+Driver "0..*" --> "0..1" Route : follows
+Driver "0..*" -l-> "1" DriverListing : included in
 
+Hitchhiker "0..*" --> "0..1" Destination : specifies
+
+Ride "0..*" --> "1" Route : follows
 @enduml
