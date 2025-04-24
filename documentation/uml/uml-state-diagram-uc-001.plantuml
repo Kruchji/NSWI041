@@ -1,0 +1,14 @@
+@startuml
+hide empty description
+state "Selecting a destination" as Map
+state "Displaying driver listing" as Drivers
+state "Displaying driver details" as DriverDetails
+state "Waiting for driver response" as Waiting
+
+[*] -r-> Map
+Map -r-> Drivers : selected valid \n destination
+Drivers -d-> DriverDetails : selected driver from list
+DriverDetails -u-> Waiting : selected suitable driver
+Drivers -r-> Waiting : selected suitable driver
+Waiting -r-> [*] : ride request accepted
+@enduml
