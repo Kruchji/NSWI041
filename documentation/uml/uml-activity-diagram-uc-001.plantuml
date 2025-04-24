@@ -1,0 +1,53 @@
+@startuml
+start
+:Hitchhiker navigates to the option to find available ride;
+partition "Set destination"   {
+    label set_destination
+    :System shows them a map with a search box and hitchhiker's location;
+    :Hitchhiker can search for a desired destination to travel to (through search box or pin on map);
+    switch (Destination address)
+        case ( is incomplete)
+        :System shows shows a prompt to complete the address;
+        :Hitchhiker can complete the address;
+        case ( is valid)
+        :Hitchhiker confirms their chosen destination;
+        case ( is unknown)
+        :System shows a list of places with similar names;
+        :Hitchhiker can pick destination from the list;
+    endswitch
+    :System confirms destination selection;
+}
+repeat
+    repeat
+        partition "Display driver listing"   {
+            label display_driver_listing
+            :System shows them a list of nearby and available drivers going the same way;
+            repeat
+                switch (Hitchhiker's action)
+                    case (Hitchhiker selects the 'Filter' option)
+                        :System show list all possible driver filtering options;
+                        :Hitchhiker specifies their preferences using the options and confirms;
+                    case (Hitchhiker selects the 'Search' option)
+                        :System displays a text box and a keyboard;
+                        :Hitchhiker enters a driver's name to search for;
+                    case (Hitchhiker is satisfied with the list)
+                        :Hitchhiker goes through the list of drivers;
+                endswitch
+            repeat while (Hitchhiker's decision) is (Hitchhiker searches for more drivers) not (Hitchhiker chooses one of the drivers in the list)
+            :System shows more details about the chosen driver;
+        }
+    repeat while (Hitchhiker's decision) is (Hitchhiker finds the driver unsuitable) not (Hitchhiker finds the driver suitable)
+    :Hitchhiker confirms the driver selection;
+    :System contacts the driver;
+    partition "Ride request notification"   {
+        label ride_request_notification
+        :System notifies the driver that a hitchhiker wants to use his ride;
+        if (Driver's decision) then (Driver accepts hitchhiker's request)
+            :System notifies the hitchhiker that their ride request was accepted;
+        else (Driver declines hitchhiker's request)
+            :System notifies the hitchhiker that their ride request was declined;
+        endif
+    }
+repeat while (Driver's decision) is (Ride request was declined) not (Ride request was accepted)
+stop
+@enduml
