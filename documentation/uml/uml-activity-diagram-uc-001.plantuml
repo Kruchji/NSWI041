@@ -34,7 +34,10 @@ repeat
                         :Hitchhiker goes through the list of drivers;
                 endswitch
             repeat while (Hitchhiker's decision) is (Hitchhiker searches for more drivers) not (Hitchhiker chooses one of the drivers in the list)
-            :System shows more details about the chosen driver;
+            if (Show driver details) then (Hitchhiker wants to see driver details)
+                :System shows more details about the chosen driver;
+            else (Hitchhiker doesn't want to see driver details)
+            endif
         }
     repeat while (Hitchhiker's decision) is (Hitchhiker finds the driver unsuitable) not (Hitchhiker finds the driver suitable)
     :Hitchhiker confirms the driver selection;
