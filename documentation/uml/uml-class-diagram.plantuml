@@ -1,0 +1,60 @@
+@startuml uml-class-diagram
+
+class User {
+    given name
+    email address
+}
+
+class Hitchhiker {
+    preference: Preference [0..*]
+}
+
+class Driver {
+    preference: Preference [0..*]
+}
+
+class Vehicle {
+    hitchhiker capacity
+}
+
+class Ride {
+
+}
+
+class Destination {
+}
+
+class "Driver Rating" as DriverRating {
+    score
+    comment [0..1]
+}
+
+class Route {
+    start: Destination
+    end: Destination
+}
+
+class "Driver Listing" as DriverListing {
+    drivers: Driver [0..*]
+}
+
+class "Ride Request" as RideRequest {
+    status
+}
+
+class Preference {
+
+}
+
+Driver -u-|> User
+Hitchhiker -u-|> User
+
+Driver "1" --> "0..*" DriverRating : received ratings
+Hitchhiker "1" --> "0..*" DriverRating : given ratings
+
+Driver "1" -l-> "0..1" Ride : provides
+Hitchhiker "0..*" -r-> "0..1" Ride : uses
+
+Driver "0..1" --> "1" Vehicle : drives
+
+@enduml
