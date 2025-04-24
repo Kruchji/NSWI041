@@ -1,0 +1,27 @@
+@startuml
+start
+
+if (Driver location available?) then (yes)
+  repeat
+    :System tracks driver's location;
+  repeat while (Driver is not close enough to meeting point)
+  :App notifies hitchhiker of driver arrival;
+
+  if (Hitchhiker acknowledges?) then (yes)
+    stop
+  else (no)
+    :App resends notification;
+    if (Hitchhiker acknowledges?) then (yes)
+      stop
+    else (no)
+      :App informs driver of no response;
+      stop
+    endif
+  endif
+else (no)
+  :App warns hitchhiker to watch the road;
+stop
+endif
+
+@enduml
+
