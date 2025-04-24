@@ -1,0 +1,24 @@
+
+@startuml
+start
+repeat
+:Driver is being navigated to hitchhiker's location;
+    :Driver decides to cancel the ride;
+    :Driver taps on "Cancel ride" option;
+    :System asks driver if they are sure they want to cancel the ride;
+    :Driver confirms cancellation;
+
+    if (Can cancel ride?) then (yes)
+        :System cancels the ride;
+        :System shows confirmation of cancellation;
+        :System navigates driver to home page;
+        :System notifies hitchhiker that the ride has been cancelled;
+        :Hitchhiker is shown available drivers heading in their direction;
+    else (no)
+        :System shows error message of not being able to cancel;
+    endif
+repeat while (Ride cancelled?) is (no)
+stop
+@enduml
+
+

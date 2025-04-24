@@ -1,0 +1,18 @@
+@startuml
+start
+:System shows a map with a search box and hitchhiker's location;
+:Hitchhiker chooses `Set destination` option;
+:Hitchhiker can search for destination (through search box or pin on map);
+switch (Destination address)
+    case ( is incomplete)
+    :System shows shows a prompt to complete the address;
+    :Hitchhiker can complete the address;
+    case ( is valid)
+    :Hitchhiker confirms their chosen destination;
+    case ( is unknown)
+    :System shows a list of places with similar names;
+    :Hitchhiker can pick destination from the list;
+endswitch
+:System confirms this action;
+stop
+@enduml

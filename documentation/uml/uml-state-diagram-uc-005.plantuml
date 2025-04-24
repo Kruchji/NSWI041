@@ -1,0 +1,17 @@
+@startuml
+hide empty description
+
+state "Navigating to Hitchhiker" as Navigating
+state "Cancelling Ride" as CancellingRide
+state "Cancelled" as Cancelled
+state "Error Handling" as ErrorHandling
+
+[*] -r-> Navigating
+Navigating -u-> CancellingRide : Tap "Cancel ride"
+CancellingRide -u-> Cancelled : Confirm cancellation
+CancellingRide -d-> Navigating : Cancel cancellation
+Cancelled -u-> [*] : Cancellation confirmed
+
+Cancelled -d-> ErrorHandling : Cannot confirm cancellation
+ErrorHandling -u-> Navigating : Show error message
+@enduml
