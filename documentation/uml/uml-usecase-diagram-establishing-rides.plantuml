@@ -10,11 +10,10 @@ rectangle "E-Stop - Establishing Rides" {
     usecase "Ride request notification" as UC_RRN
     usecase "Rate drivers" as UC_RD
 }
-UC_FAR .l.> UC_DDL : <<include>>
+UC_FAR ..> UC_DDL : <<include>>
 UC_FAR .l.> UC_SD : <<include>>
 UC_FAR .l.> UC_RRN : <<include>>
-UC_RD .l.> UC_DDL : <<include>>
-AC_H --> UC_DDL
+UC_RD ..> UC_DDL : <<include>>
 AC_H --> UC_FAR
 AC_H --> UC_SD
 AC_D --> UC_SRD
