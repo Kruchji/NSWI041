@@ -1,15 +1,16 @@
 @startuml uml-state-machine-uc-010
 hide empty description
-state "Displaying map with the fastest path to drivers destination from the current spot" as Map
+state "Displaying map with the fastest path to the drivers destination" as MapDriver
+state "Displaying map with the fastest path to the hitchhiker" as MapHitchhiker
 state "Displaying map with the fastest path to drivers destination, while also showing the hitchhikers destination" as MapH
-state "Show notification about nearby hitchhikers with their destination" as Notification
-state "Confirm selected hitchhiker" as Confirm
+state "Show notification from hitchhiker" as Notification
 
-[*] --> Map
-Map --> Map : driver chooses different path
-Map --> Notification
-Notification --> Confirm : driver chose a hitchhiker
-Confirm --> MapH
-MapH --> Map : drop off hitchhiker
-Map --> [*] : driver finishes driving
+[*] --> MapDriver
+MapDriver--> Notification
+Notification --> MapHitchhiker: driver accepts the hitchhiker
+MapHitchhiker --> MapDriver : driver cancels the ride
+Notification --> MapDriver : driver doesn't accept the hitchhiker
+MapHitchhiker --> MapH : driver picks up the hitchhiker
+MapH --> MapDriver: drop off hitchhiker
+MapDriver--> [*] : driver finishes driving
 @enduml
