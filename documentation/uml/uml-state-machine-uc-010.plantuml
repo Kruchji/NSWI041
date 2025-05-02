@@ -1,0 +1,16 @@
+@startuml uml-state-machine-uc-010
+hide empty description
+state "Displaying map with the fastest path to the drivers destination" as MapDriver
+state "Displaying map with the fastest path to the hitchhiker" as MapHitchhiker
+state "Displaying map with the fastest path to drivers destination, while also showing the hitchhikers destination" as MapH
+state "Show notification from hitchhiker" as Notification
+
+[*] --> MapDriver
+MapDriver--> Notification
+Notification --> MapHitchhiker: driver accepts the hitchhiker
+MapHitchhiker --> MapDriver : driver cancels the ride
+Notification --> MapDriver : driver doesn't accept the hitchhiker
+MapHitchhiker --> MapH : driver picks up the hitchhiker
+MapH --> MapDriver: drop off hitchhiker
+MapDriver--> [*] : driver finishes driving
+@enduml

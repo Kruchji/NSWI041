@@ -1,24 +1,22 @@
 @startuml
 start
-:System shows the fastest path to the drivers destination;
-switch(Driver)
-    case(Follows the path)
-    :Driver drives their car towards the destination using the fastest path;
-    case(Chooses a different path)
-    :System shows a fastest path from the current spot;
-    :Driver drives using the fastest path;
-endswitch
 repeat
-:System shows notifications of awaiting hitchikers with similiar destinations as the drivers;
-    switch(Driver)
-    case(chooses to pick up a hitchhiker)
-    :Driver picks up a hitchhiker on the road;
-    :Driver drives to the hitchhikers destination (or closer to it);
-    :Driver drops off the hitchhiker;
-    case(chooses not to pick up a hitchhiker)
-    endswitch
-repeat while 
-:Driver drives to their own destination;
-:Driver finishes in their destination;
-end
+:System shows the fastest path to the drivers destination;
+:System notifies driver, that a hitchiker in the area wants to use his ride;
+switch(driver)
+case(accepts)
+:System shows the fastest path to the hitchhiker;
+:Driver drives to the hitchhiker;
+switch(driver)
+case(drives to the hitchhiker)
+:Driver picks up the hitchhiker;
+:Driver drives the hitchiker closer to theirs destination;
+:Driver drops off the hitchhiker closer to theirs destination;
+case(cancels the drive)
+endswitch
+case(doesn't accept)
+endswitch
+repeat while
+:Driver drives and finishes in their destination;
+stop
 @enduml
